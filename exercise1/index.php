@@ -13,6 +13,7 @@ error_reporting(E_ALL);
 // TODO: Make a getInfo function which returns "This beverage is <temperature> and <color>."
 // TODO: Instantiate an object which represents cola. Make sure that the color is set to black, the price equals 2 euro and the temperature to cold automatically
 //  print the getInfo on the screen.
+// TODO: Print the temperature on the screen.
 
 class Beverage
 {
@@ -32,7 +33,8 @@ class Beverage
 
     public function getInfo()
     {
-        echo "This beverage is $this->color, €$this->price and $this->temperature.";
+        echo "This beverage is $this->color, €$this->price and $this->temperature.<br>";
+        echo "$this->temperature";
     }
 
 }
@@ -40,7 +42,3 @@ class Beverage
 $beverage1 = new Beverage("black", 2, "");
 
 $beverage1->getInfo();
-
-// TODO: Instantiate an object which represents cola. Make sure that the color is set to black, the price equals 2 euro and the temperature to cold automatically
-//  print the getInfo on the screen.
-// TODO: Print the temperature on the screen.
