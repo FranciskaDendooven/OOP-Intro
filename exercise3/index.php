@@ -16,10 +16,11 @@ class Beverage
         private ?float $price;
         private ?string $temperature;
 
-        public function __construct(?string $color, ?float $price, ?string $temperature = "cold")//set info
+        public function __construct(?string $color, ?float $price, ?string $temperature)//set info
         {
             $this->color = $color;
             $this->price = $price;
+            $temperature = "cold";
             $this->temperature = $temperature;
         }
 
@@ -64,48 +65,51 @@ class Beer extends Beverage
 
     public function getInfo() : string
     {
-        return 'This is' . $this->name . 'and the color is' .  $this->getColor();
+        return 'This is ' . $this->name . ' and the color is ' .  $this->getColor();
     }
 
-    public function setBeer(?string $color, ?float $price, ?string $temperature, ?string $name, ?float $alcoholPercentage)
+    public function setBeerColor(?string $color)//userXP alles apart plaatsen
     {
         $this->setColor($color);
-        $this->setPrice($price);
-        $this->setTemp($temperature);
-        $this->name = $name;
-        $this->alcoholPercentage = $alcoholPercentage;
-    }//userXP alles apart plaatsen
-    public function getBeer()
+    }
+    public function setBeerPrice(?float $price)//userXP alles apart plaatsen
     {
-        return 'This is a ' . $this->name . ' and is ' . $this->getColor() . '. It costs ' . $this->getPrice() . '. It is also best served ';
+        $this->setPrice($price);
+    }
+    public function setBeerTemp(?string $temperature)//userXP alles apart plaatsen
+    {
+        $this->setTemp($temperature);
+    }
+    public function setBeerName(?string $name)//userXP alles apart plaatsen
+    {
+        $this->name = $name;
+    }
+    public function setBeerAlocoholPercentage(?float $alcoholPercentage)//userXP alles apart plaatsen
+    {
+        $this->alcoholPercentage = $alcoholPercentage;
+    }
+
+    // TODO: Create a new private method in the Beer class called beerInfo which returns "Hi i'm Duvel and have an alcochol percentage of 8.5 and I have a light color."
+
+    public function getBeer() : string
+    {
+        return 'Hi! I\'m ' . $this->name . ' and have an alcochol percentage of ' . $this->alcoholPercentage . ' and I have a ' . $this->getColor() . ' color.<br>It costs €' . $this->getPrice() . ' and is best served ' . $this->getTemp() . '.';
     }
 
         public function getAlcoholPercentage()
     {
-        echo 'This beverage contains' . $this->alcoholPercentage .'% alcohol! and the color is' . $this->getColor() .'.<br>';
+        echo 'This beverage contains ' . $this->alcoholPercentage .'% alcohol! and the color is ' . $this->getColor() .'.<br>';
     }
 }
 
-$beer1 = new Beer("blond", 0, "", "Duvel", 5.5);
-
+$beer1 = new Beer("blond", 4.50, "", "Duvel", 8.3);
 echo $beer1->getBeer();
 
-$beer1->setBeer("blond", 5.5, "", "Duvel", 5.5);
+$beer1->setBeerColor("light", 5.5, "", "Duvel", 8.3);//use set to update the info of get
 
 echo '<br>';
 echo $beer1->getInfo();
 
-// $beer1->getAlcoholPercentage();
-
-
-/* EXERCISE 3
-TODO: Make all the other prints work without error.
-TODO: After fixing the errors. Change the color of Duvel to light instead of blond and also print this new color on the screen after all the other things that were already printed (to be sure that the color has changed).
-TODO: Create a new private method in the Beer class called beerInfo which returns "Hi i'm Duvel and have an alcochol percentage of 8.5 and I have a light color."
-
-Make sure that you use the variables and not just this text line.
-
-TODO: Print this method on the screen on a new line.
-
-USE TYPEHINTING EVERYWHERE!
-*/
+echo '<br>';
+$beer2 = new Beer("white", 4.50, "", "Duvel", 8.3);
+echo $beer2->getAlcoholPercentage();
