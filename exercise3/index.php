@@ -16,7 +16,17 @@ class Beverage
         private ?float $price;
         private $temperature;
 
-        protected function setBeverage(?string $color, ?float $price, $temperature)
+        public function __construct(?string $color, ?float $price, $temperature)//set info
+        {
+            $this->color = $color;
+    
+            $this->price = $price;
+    
+            $temperature = "cold";
+            $this->temperature = $temperature;
+        }
+
+        protected function setBeverage(?string $color, ?float $price, $temperature)//set info
         {
             $this->color = $color;
             $this->price = $price;
@@ -24,77 +34,74 @@ class Beverage
             $this->temperature = $temperature;
         }
 
-        public function getBeverage(?string $color, ?float $price, $temperature)
+        protected function getBeverage()//set info
         {
-            return $this->setBeverage($color, $price, $temperature);
+            return $this->color;
+            return $this->price;
+            return $this->temperature;
+        }
+
+        protected function getColor()//get info
+        {
+            return $this->color;
+        }
+        protected function getPrice()//get info
+        {
+            return $this->price;
+        }
+        protected function getTemp()//get info
+        {
+            return $this->temperature;
         }
 
         public function test()
         {
-            echo "This drink is: $this->color <br>";
+            echo "This drink is: $this->color<br>";
         }
-        public function getColor()
-        {
-            return $this->color;
-        }
-        public function getTemperature()
-        {
-            return $this->temperature;
-        }
-        public function getPrice()
-        {
-            return $this->price;
-        }
+    }
+
+class Beer extends Beverage
+{
+    private ?string $name;
+    private ?float $alcoholPercentage;
+
+    public function __construct(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
+    {
+        parent::__construct($color, $price, $temperature);
+        $this->name = $name;
+        $this->alcoholPercentage = $alcoholPercentage;
+    }
+
+    // public function getInfo() : string
+    // {
+    //     return $this->getColor;
+    // }
+    protected function setBeer(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
+    {
+        $this->color = $color;
+        $this->price = $price;
+        $this->temperature = $temperature;
+        $this->name = $name;
+        $this->alcoholPercentage = $alcoholPercentage;
+    }
+    public function getBeer()
+    {
+        return $this->name;
+        return $this->color;
+    }
+        public function getAlcoholPercentage()
+{
+    echo "This beverage contains $this->alcoholPercentage% alcohol! and the color is $this->color <br>";
+}
 }
 
-        $property = new ReflectionProperty("Beverage", "color");
-        $property->setAccessible(true);
-        $property = new ReflectionProperty("Beverage", "price");
-        $property->setAccessible(true);
-        $property = new ReflectionProperty("Beverage", "temperature");
-        $property->setAccessible(true);
-
-// class Beer extends Beverage
-// {
-//     public ?string $name;
-//     public ?float $alcoholPercentage;
-
-//     public function setBeer(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
-//     {
-//         $this->setBeverage($color, $price, $temperature);
-//         $this->name = $name;
-//         $this->alcoholPercentage = $alcoholPercentage;
-//     }
-//     public function getBeer(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
-//     {
-//         return $this->setBeer($color, $price, $temperature, $name, $alcoholPercentage);
-//     }
-//         public function getAlcoholPercentage()
-// {
-//     echo "This beverage contains $this->alcoholPercentage% alcohol! and the color is $this->color <br>";
-// }
-// }
-//     public function getAlcoholPercentage()
-// {
-//     echo "This beverage contains $this->alcoholPercentage% alcohol! and the color is $this->color <br>";
-// }
-// // private function getDuvel()
-// // {
-// //         return "This $this->name is $this->color, costs €$this->price, contains $this->alcoholPercentage% alcohol and is best served $this->temperature.<br>";
-// // }
-// // public function getDuvel1()
-// // {
-// //     return $this->getDuvel();
-// // }
-
-
 $beverage1 = new Beverage("brown", 3.5, "");
-$beverage1->getBeverage("brown", 3.5, "");
+// $beverage1->getBeverage("brown", 3.5, "");
 $beverage1->test();
 
-// $beer1 = new Beer("blond", 0, "", "", 5.5);
-// $beer1->getBeer("blond", 0, "", "", 5.5);
-// $beer1->getAlcoholPercentage();
+$beer1 = new Beer("blond", 0, "", "", 5.5);
+$beer1->getBeer("blond", 0, "", "", 5.5);
+$beer1->getAlcoholPercentage();
 
 
 // $beer1 = new Beer("blond", 0, "", "", 5.5);
@@ -107,34 +114,6 @@ $beverage1->test();
 // $beer2 -> getBeer("blond", 3.5, "", "Duvel", 8.5);
 // $beer1->getAlcoholPercentage();
 // $beer2->getDuvel1();
-
-
-
-// class Beer extends Beverage
-// {
-//     private ?string $name;
-//     private ?float $alcoholPercentage;
-
-//     public function setBeer(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
-//     {
-//         parent::__construct($color, $price, $temperature);
-//         Beverage::__construct($color, $price, $temperature);
-//         $this->name = $name;
-//         $this->alcoholPercentage = $alcoholPercentage;
-//     }
-
-//     public function __construct(?string $color, ?float $price, $temperature, ?string $name, ?float $alcoholPercentage)
-//     {
-//         parent::__construct($color, $price, $temperature);
-//         Beverage::__construct($color, $price, $temperature);
-//         $this->name = $name;
-//         $this->alcoholPercentage = $alcoholPercentage;
-//     }
-
-// public function getAlcoholPercentage()
-// {
-//     echo "This beverage contains $this->alcoholPercentage% alcohol!<br>";
-// }
 // public function getDuvel()
 // {
 //         echo "This $this->name is $this->color, costs €$this->price, contains $this->alcoholPercentage% alcohol and is best served $this->temperature.<br>";
